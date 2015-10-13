@@ -1,0 +1,29 @@
+{
+  "name": "postais",
+  "version": "0.0.1",
+  "description": "Another twitter bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bertez/postais.git"
+  },
+  "keywords": [
+    "twitter",
+    "bot"
+  ],
+  "author": "Berto Yáñez <berto@ber.to>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bertez/postais/issues"
+  },
+  "homepage": "https://github.com/bertez/postais#readme",
+  "dependencies": {
+    "gm": "^1.20.0",
+    "node-uuid": "^1.4.3",
+    "request": "^2.65.0",
+    "twit": "^2.1.0"
+  }
+}
