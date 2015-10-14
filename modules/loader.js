@@ -21,6 +21,12 @@ class Loader {
 
             request.get(this.url)
                 .on('error', error => reject(error))
+                .on('response', (response) => {
+                    if(response.headers['content-length'] < 10000) {
+                        fs.unlinkSync(file);
+                        reject('Could not find image.');
+                    }
+                })
                 .pipe(fileStream);
         });
     }

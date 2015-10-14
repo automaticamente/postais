@@ -1,11 +1,11 @@
 const helpers = {
     /**
-    * Returns a random array element
-    * @param {Array} array - An array
-    */
+     * Returns a random array element
+     * @param {Array} array - An array
+     */
     choice: (array) => {
 
-        if(!Array.isArray(array)){
+        if (!Array.isArray(array)) {
             throw new Error('Argument must be array');
         }
 
@@ -13,36 +13,42 @@ const helpers = {
 
     },
     /**
-    * Returns a random element and removes it from the array
-    * @param {Array} array - An array
-    */
+     * Returns a random element and removes it from the array
+     * @param {Array} array - An array
+     */
     choiceRemove: (array) => {
 
-        if(!Array.isArray(array)){
+        if (!Array.isArray(array)) {
             throw new Error('Argument must be array');
         }
 
         var index = array[Math.floor(array.length * Math.random())];
 
-        return array.splice(index,1)[0];
+        return array.splice(index, 1)[0];
 
     },
     /**
-    * Returns a random number between two numbers
-    * @param {Number} a - The min number, if b is not defined the min number will be 0 and this will be the max number
-    * @param {Number} [b] - The max number
-    */
+     * Returns a random number between two numbers
+     * @param {Number} a - The min number, if b is not defined the min number will be 0 and this will be the max number
+     * @param {Number} [b] - The max number
+     */
     randint: (a, b) => {
-        if(!b) {
+        if (!b) {
             b = a;
             a = 0;
         }
 
-        if(typeof a !== 'number' || typeof b !== 'number') {
+        if (typeof a !== 'number' || typeof b !== 'number') {
             throw new Error('Arguments mus be numbers');
         }
 
         return Math.floor(Math.random() * (b - a + 1) + a);
+    },
+    sleep: (time) => {
+        time = time ||  0;
+        return new Promise((r) => {
+            setTimeout(r, time * 1000);
+        });
     }
 };
 
