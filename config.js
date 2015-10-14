@@ -7,6 +7,9 @@ module.exports = {
     },
     mapsAPI: '',
     download: __dirname + '/download',
-    output: __dirname + '/output'
-
+    output: __dirname + '/output',
+    font: __dirname + '/fonts/Forum-Regular.ttf',
+    stamps: [
+        __dirname + '/images/selo-azul.png'
+    ]
 };
