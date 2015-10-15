@@ -4,6 +4,7 @@
 
 const fs = require('fs');
 const Twit = require('twit');
+const prefixer = require('./helpers').prefixer;
 
 let client;
 
@@ -26,7 +27,7 @@ class Tweeter {
                 }
 
                 var params = {
-                    status: `Estiven en ${options.council} e lembreime de ti`,
+                    status: `Estiven ${prefixer(options.council)} e lembreime de ti`,
                     media_ids: [data.media_id_string]
                 };
 

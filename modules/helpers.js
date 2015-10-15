@@ -49,7 +49,35 @@ const helpers = {
         return new Promise((r) => {
             setTimeout(r, time * 1000);
         });
+    },
+    prefixer : (string) => {
+        'use strict';
+
+        var prefixes = [{
+            pre: 'A ',
+            rep: 'na '
+        }, {
+            pre: 'O ',
+            rep: 'no '
+        }, {
+            pre: 'As ',
+            rep: 'nas '
+        }, {
+            pre: 'Os ',
+            rep: 'nos '
+        }];
+
+        for (var i = 0; i < prefixes.length; i++) {
+            var pref = prefixes[i];
+
+            if (pref.pre === string.slice(0, pref.pre.length)) {
+                return pref.rep + string.slice(pref.pre.length, string.length);
+            }
+        }
+
+        return 'en ' + string;
     }
+
 };
 
 module.exports = helpers;

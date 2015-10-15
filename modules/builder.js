@@ -46,12 +46,13 @@ class Builder {
                     .border(14, 14)
                     .extent(668, 460)
                     .font(options.font)
-                    .fontSize(13)
+                    .fontSize(14)
                     .fill('#000')
                     .drawText(24, 432, `${reply}. ${options.place} - ${options.council.toUpperCase()} - Vista parcial`)
-                    .fontSize(10)
+                    .fontSize(11)
                     .fill('#333')
-                    .drawText(593, 430, `(c) ${new Date().getFullYear()} Google`)
+                    .drawText(580, 430, `(c) ${new Date().getFullYear()} Google`)
+                    .quality(90)
                     .stream('jpg', (err, out) => {
                         if (err) {
                             reject(err);

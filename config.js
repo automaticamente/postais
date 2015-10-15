@@ -13,6 +13,8 @@ module.exports = {
         __dirname + '/images/selo.png',
         __dirname + '/images/selo2.png',
         __dirname + '/images/selo3.png',
-        __dirname + '/images/selo4.png'
+        __dirname + '/images/selo4.png',
+        __dirname + '/images/selo5.png',
+        __dirname + '/images/selo6.png'
     ]
 };
