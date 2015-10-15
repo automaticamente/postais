@@ -47,7 +47,7 @@ const build = function() {
         });
 };
 
-setInterval(() => build(), 5 * 60 * 1000);
+setInterval(() => build(), 60 * 60 * 1000);
 build();
 
 process.on('SIGINT', function() {
