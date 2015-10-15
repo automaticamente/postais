@@ -19,16 +19,16 @@ const config =
     require('./local.config.js') :
     require('./config.js');
 
-const T = new tweeter.Tweeter(config.twitterAPI);
-const L = new Loader(config.download);
 const B = new builder.Builder(config.output);
+const L = new Loader(config.download);
+const T = new tweeter.Tweeter(config.twitterAPI);
 
 const nomenclator = require('./nomenclator.json');
 
 const build = function() {
     let place = h.choice(nomenclator);
 
-    let url = `https://maps.googleapis.com/maps/api/streetview?size=640x440&location=${encodeURI(place.place)}, ${encodeURI(place.council)},Spain&fov=${h.randint(90,120)}&heading=${h.randint(0,360)}&pitch=0&key=AIzaSyAnR2CI3d6MUBrU6E9LU2FqbMVZ7XVAj-Y`;
+    let url = `https://maps.googleapis.com/maps/api/streetview?size=640x440&location=${encodeURI(place.place)}, ${encodeURI(place.council)},Spain&fov=${h.randint(90,120)}&heading=${h.randint(0,360)}&pitch=0&key=${config.mapsAPI}`;
 
     L.load(url)
         .then(file => B.build(file, {
