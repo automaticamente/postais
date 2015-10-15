@@ -4,8 +4,10 @@ const fs = require('fs');
 const path = require('path');
 
 const uuid = require('node-uuid');
-const redis = require('redis');
-const client = redis.createClient();
+
+let client;
+
+const randint = require('./helpers').randint;
 
 
 const gm = require('gm').subClass({
@@ -26,55 +28,54 @@ class Builder {
 
             outputStream.on('close', () => {
                 fs.unlinkSync(this.file);
-                client.end();
                 resolve(output);
             });
 
             outputStream.on('error', (error) => {
-                client.end();
                 reject(error);
             });
 
             client.get('postalnumber', (err, reply) => {
                 if(err) {
-                    client.end();
                     reject(err);
                 }
 
                 gm(this.file)
                     .enhance()
                     .contrast(-2)
-                    .sepia()
-                    .crop(600, 360)
+                    // .blur(0.1)
+                    // .type('grayscale')
+                    .crop(640, 400)
                     .borderColor('#fff')
-                    .border(18, 18)
+                    .border(14, 14)
+                    .extent(668, 460)
                     .font(this.options.font)
                     .fontSize(13)
                     .fill('#000')
-                    .drawText(24, 392, `${reply}. ${this.options.place} - ${this.options.council.toUpperCase()} - Vista parcial`)
+                    .drawText(24, 432, `${reply}. ${this.options.place} - ${this.options.council.toUpperCase()} - Vista parcial`)
                     .fontSize(10)
                     .fill('#333')
-                    .drawText(555, 390, `(c) ${new Date().getFullYear()} Google`)
+                    .drawText(593, 430, `(c) ${new Date().getFullYear()} Google`)
                     .stream('jpg', (err, out) => {
                         if (err) {
-                            client.end();
                             reject(err);
                         }
 
                         gm(out)
                             .composite(this.options.stamp)
-                            .gravity('SouthEast')
-                            .geometry('+50+50')
+                            .gravity('NorthEast')
+                            .geometry(`+${randint(20,60)}+${randint(20,60)}`)
                             .stream('jpg')
                             .pipe(outputStream);
-                    });
+                });
             });
-
-
 
         });
 
     }
 }
 
-module.exports = Builder;
+module.exports = {
+    setClient: (sharedClient) => client = sharedClient,
+    Builder: Builder
+};

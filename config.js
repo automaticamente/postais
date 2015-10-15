@@ -10,6 +10,7 @@ module.exports = {
     output: __dirname + '/output',
     font: __dirname + '/fonts/Forum-Regular.ttf',
     stamps: [
-        __dirname + '/images/selo-azul.png'
+        __dirname + '/images/selo.png',
+        __dirname + '/images/selo2.png'
     ]
 };

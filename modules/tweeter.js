@@ -5,18 +5,15 @@
 const fs = require('fs');
 const Twit = require('twit');
 
-const redis = require('redis');
-const client = redis.createClient();
+let client;
 
 class Tweeter {
-    constructor(file, api, options) {
-        this.file = file;
+    constructor(api) {
         this.twitter = new Twit(api);
-        this.options = options;
     }
 
-    tweet() {
-        let b64media = fs.readFileSync(this.file, {
+    tweet(file, options) {
+        let b64media = fs.readFileSync(file, {
             encoding: 'base64'
         });
 
@@ -25,23 +22,21 @@ class Tweeter {
                 media_data: b64media
             }, (error, data) => {
                 if (error) {
-                    client.end();
                     reject(error);
                 }
 
                 var params = {
-                    status: `Estiven en ${this.options.council} e lembreime de ti`,
+                    status: `Estiven en ${options.council} e lembreime de ti`,
                     media_ids: [data.media_id_string]
                 };
 
                 this.twitter.post('statuses/update', params, function(error, data) {
                     if (error) {
-                        client.end();
                         reject(error);
                     }
 
+
                     client.incr('postalnumber');
-                    client.end();
                     resolve(data.id_str);
                 });
             });
@@ -50,4 +45,7 @@ class Tweeter {
     }
 }
 
-module.exports = Tweeter;
+module.exports = {
+    setClient: (sharedClient) => client = sharedClient,
+    Tweeter: Tweeter
+};
