@@ -27,7 +27,7 @@ class Tweeter {
                 }
 
                 var params = {
-                    status: `Estiven ${prefixer(options.council)} e lembreime de ti`,
+                    status: `Estiven ${prefixer(options.council)} e lembreime de ti.`,
                     media_ids: [data.media_id_string]
                 };
 
