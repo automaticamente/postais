@@ -20,6 +20,8 @@ const config =
     require('./config.js');
 
 const T = new tweeter.Tweeter(config.twitterAPI);
+const L = new Loader(config.download);
+const B = new builder.Builder(config.output);
 
 const nomenclator = require('./nomenclator.json');
 
@@ -28,13 +30,13 @@ const build = function() {
 
     let url = `https://maps.googleapis.com/maps/api/streetview?size=640x440&location=${encodeURI(place.place)}, ${encodeURI(place.council)},Spain&fov=${h.randint(90,120)}&heading=${h.randint(0,360)}&pitch=0&key=AIzaSyAnR2CI3d6MUBrU6E9LU2FqbMVZ7XVAj-Y`;
 
-    new Loader(url, config.download).load()
-        .then(file => new builder.Builder(file, config.output, {
+    L.load(url)
+        .then(file => B.build(file, {
             font: config.font,
             stamp: h.choice(config.stamps),
             council: place.council,
             place: place.place
-        }).build())
+        }))
         .then(file => T.tweet(file, {
             council: place.council
         }))

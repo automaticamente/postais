@@ -6,12 +6,11 @@ const request = require('request');
 const uuid = require('node-uuid');
 
 class Loader {
-    constructor(url, downloadFolder) {
-        this.url = url;
+    constructor(downloadFolder) {
         this.downloadFolder = downloadFolder;
     }
 
-    load() {
+    load(url) {
         return new Promise((resolve, reject) => {
             let file = path.join(this.downloadFolder, `${uuid.v1()}.jpg`);
             let fileStream = fs.createWriteStream(file);
@@ -19,7 +18,7 @@ class Loader {
             fileStream.on('close', () => resolve(file));
             fileStream.on('error', (error) => reject(error));
 
-            request.get(this.url)
+            request.get(url)
                 .on('error', error => reject(error))
                 .on('response', (response) => {
                     if(response.headers['content-length'] < 10000) {

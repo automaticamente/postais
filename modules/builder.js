@@ -15,19 +15,17 @@ const gm = require('gm').subClass({
 });
 
 class Builder {
-    constructor(file, outputFolder, options) {
-        this.file = file;
+    constructor(outputFolder) {
         this.outputFolder = outputFolder;
-        this.options = options;
     }
 
-    build() {
+    build(file, options) {
         return new Promise((resolve, reject) => {
             let output = path.join(this.outputFolder, `${uuid.v1()}.jpg`);
             let outputStream = fs.createWriteStream(output);
 
             outputStream.on('close', () => {
-                fs.unlinkSync(this.file);
+                fs.unlinkSync(file);
                 resolve(output);
             });
 
@@ -40,7 +38,7 @@ class Builder {
                     reject(err);
                 }
 
-                gm(this.file)
+                gm(file)
                     .enhance()
                     .contrast(-2)
                     // .blur(0.1)
@@ -49,10 +47,10 @@ class Builder {
                     .borderColor('#fff')
                     .border(14, 14)
                     .extent(668, 460)
-                    .font(this.options.font)
+                    .font(options.font)
                     .fontSize(13)
                     .fill('#000')
-                    .drawText(24, 432, `${reply}. ${this.options.place} - ${this.options.council.toUpperCase()} - Vista parcial`)
+                    .drawText(24, 432, `${reply}. ${options.place} - ${options.council.toUpperCase()} - Vista parcial`)
                     .fontSize(10)
                     .fill('#333')
                     .drawText(593, 430, `(c) ${new Date().getFullYear()} Google`)
@@ -62,7 +60,7 @@ class Builder {
                         }
 
                         gm(out)
-                            .composite(this.options.stamp)
+                            .composite(options.stamp)
                             .gravity('NorthEast')
                             .geometry(`+${randint(20,60)}+${randint(20,60)}`)
                             .stream('jpg')
