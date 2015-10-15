@@ -11,6 +11,8 @@ module.exports = {
     font: __dirname + '/fonts/Forum-Regular.ttf',
     stamps: [
         __dirname + '/images/selo.png',
-        __dirname + '/images/selo2.png'
+        __dirname + '/images/selo2.png',
+        __dirname + '/images/selo3.png',
+        __dirname + '/images/selo4.png'
     ]
 };

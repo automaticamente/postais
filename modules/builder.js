@@ -34,15 +34,13 @@ class Builder {
             });
 
             client.get('postalnumber', (err, reply) => {
-                if(err) {
+                if (err) {
                     reject(err);
                 }
 
                 gm(file)
                     .enhance()
                     .contrast(-2)
-                    // .blur(0.1)
-                    // .type('grayscale')
                     .crop(640, 400)
                     .borderColor('#fff')
                     .border(14, 14)
@@ -65,7 +63,7 @@ class Builder {
                             .geometry(`+${randint(20,60)}+${randint(20,60)}`)
                             .stream('jpg')
                             .pipe(outputStream);
-                });
+                    });
             });
 
         });

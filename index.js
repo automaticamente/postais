@@ -40,7 +40,7 @@ const build = function() {
         .then(file => T.tweet(file, {
             council: place.council
         }))
-        .then(tweet => console.log(`https://twitter.com/postaisgalegas/status/${tweet}`))
+        .then(id => console.log(`https://twitter.com/postaisgalegas/status/${id}`))
         .catch(error => {
             console.log(error);
             return h.sleep(2).then(() => build());
