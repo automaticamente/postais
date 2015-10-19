@@ -54,7 +54,7 @@ class Builder {
                     .fontSize(11)
                     .fill('#333')
                     .drawText(580, 430, `(c) ${new Date().getFullYear()} Google`)
-                    .quality(90)
+                    .quality(100)
                     .stream('jpg', (err, out) => {
                         if (err) {
                             reject(err);
@@ -79,6 +79,7 @@ class Builder {
                                     .composite(stampTemp)
                                     .gravity('NorthEast')
                                     .geometry(`+${randint(20,60)}+${randint(20,60)}`)
+                                    .quality(100)
                                     .stream('jpg')
                                     .pipe(outputStream);
 
