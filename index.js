@@ -37,10 +37,10 @@ const build = function() {
             council: place.council,
             place: place.place
         }))
-        // .then(file => T.tweet(file, {
-        //     council: place.council
-        // }))
-        // .then(id => console.log(`https://twitter.com/postaisgalegas/status/${id}`))
+        .then(file => T.tweet(file, {
+            council: place.council
+        }))
+        .then(id => console.log(`https://twitter.com/postaisgalegas/status/${id}`))
         .catch(error => {
             console.log(error);
             return h.sleep(2).then(() => build());
