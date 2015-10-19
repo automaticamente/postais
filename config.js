@@ -17,7 +17,7 @@ module.exports = {
             image: __dirname + '/images/selo-lu.png',
             color: '#f20823',
             offset: {
-                x: 3,
+                x: 4,
                 y: 5
             }
         },
@@ -33,7 +33,7 @@ module.exports = {
             image: __dirname + '/images/selo-ou.png',
             color: '#000000',
             offset: {
-                x: 1,
+                x: 0,
                 y: 0
             }
         },
