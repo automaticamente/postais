@@ -23,9 +23,11 @@ class Builder {
         return new Promise((resolve, reject) => {
             let output = path.join(this.outputFolder, `${uuid.v1()}.jpg`);
             let outputStream = fs.createWriteStream(output);
+            let stampTemp;
 
             outputStream.on('close', () => {
                 fs.unlinkSync(file);
+                fs.unlinkSync(stampTemp);
                 resolve(output);
             });
 
@@ -45,7 +47,7 @@ class Builder {
                     .borderColor('#fff')
                     .border(14, 14)
                     .extent(668, 460)
-                    .font(options.font)
+                    .font(options.font.postcard)
                     .fontSize(14)
                     .fill('#000')
                     .drawText(24, 432, `${reply}. ${options.place} - ${options.council.toUpperCase()} - Vista parcial`)
@@ -58,12 +60,30 @@ class Builder {
                             reject(err);
                         }
 
-                        gm(out)
-                            .composite(options.stamp)
-                            .gravity('NorthEast')
-                            .geometry(`+${randint(20,60)}+${randint(20,60)}`)
-                            .stream('jpg')
-                            .pipe(outputStream);
+                        stampTemp = path.join(this.outputFolder, `${uuid.v1()}.png`);
+                        let date = new Date();
+
+                        gm(options.stamp.image)
+                            .resize(120, 120)
+                            .fill(options.stamp.color)
+                            .font(options.font.stamp)
+                            .fontSize(18)
+                            .drawText(27 + options.stamp.offset.x, 64 + options.stamp.offset.y, `${date.getDate()}.${date.getMonth()+1}.${date.getFullYear().toString().slice(2)}`)
+                            .rotate('transparent', randint(-20, 20))
+                            .write(stampTemp, (err) => {
+                                if (err) {
+                                    reject(err);
+                                }
+
+                                gm(out)
+                                    .composite(stampTemp)
+                                    .gravity('NorthEast')
+                                    .geometry(`+${randint(20,60)}+${randint(20,60)}`)
+                                    .stream('jpg')
+                                    .pipe(outputStream);
+
+                            });
+
                     });
             });
 
