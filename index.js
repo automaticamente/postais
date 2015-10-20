@@ -28,7 +28,7 @@ const nomenclator = require('./nomenclator.json');
 const build = function() {
     let place = h.choice(nomenclator);
 
-    let url = `https://maps.googleapis.com/maps/api/streetview?size=640x440&location=${encodeURI(place.place)},${encodeURI(place.council)},${encodeURI(place.province)},Spain&fov=${h.randint(90,120)}&heading=${h.randint(0,360)}&pitch=0&key=${config.mapsAPI}`;
+    let url = `https://maps.googleapis.com/maps/api/streetview?size=640x440&location=${encodeURI(place.place)},${encodeURI(place.parish)},${encodeURI(place.council)},${encodeURI(place.province)},Spain&fov=${h.randint(90,120)}&heading=${h.randint(0,360)}&pitch=0&key=${config.mapsAPI}`;
 
     L.load(url)
         .then(file => B.build(file, {
