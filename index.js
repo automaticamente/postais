@@ -14,8 +14,7 @@ tweeter.setClient(client);
 
 const h = require('./modules/helpers');
 
-const config =
-    fs.existsSync('./local.config.js') ?
+const config = fs.existsSync('./local.config.js') ?
     require('./local.config.js') :
     require('./config.js');
 
