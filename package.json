@@ -4,7 +4,7 @@
   "description": "Another twitter bot",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha"
   },
   "repository": {
     "type": "git",
@@ -26,5 +26,9 @@
     "redis": "^2.2.3",
     "request": "^2.65.0",
     "twit": "^2.1.0"
+  },
+  "devDependencies": {
+    "chai": "^3.4.0",
+    "mocha": "^2.3.3"
   }
 }
