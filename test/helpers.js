@@ -77,7 +77,7 @@ describe('Helpers', () => {
         });
 
         it('should not add article', () => {
-            expect(helpers.prefixer('Lorem')).to.equal('en Lorem');
+            expect(helpers.prefixer('Lorem')).to.equal('e Lorem');
         });
 
         it('should throw an error if the argument is not a string', () => {
