@@ -69,4 +69,18 @@ describe('Helpers', () => {
             expect(foo).to.be.true;
         });
     });
+
+    describe('prefixer', () => {
+        it('should add article', () => {
+            expect(helpers.prefixer('A Lorem')).to.equal('na Lorem');
+        });
+
+        it('should not add article', () => {
+            expect(helpers.prefixer('Lorem')).to.equal('en Lorem');
+        });
+
+        it('should throw an error if the argument is not a string', () => {
+            expect(() => helpers.prefixer()).to.throw(Error);
+        });
+    });
 });

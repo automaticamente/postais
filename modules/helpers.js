@@ -1,3 +1,5 @@
+'use strict';
+
 const helpers = {
     /**
      * Returns a random array element
@@ -39,7 +41,7 @@ const helpers = {
         }
 
         if (typeof a !== 'number' || typeof b !== 'number') {
-            throw new Error('Arguments mus be numbers');
+            throw new Error('Arguments must be numbers');
         }
 
         return Math.floor(Math.random() * (b - a + 1) + a);
@@ -51,7 +53,10 @@ const helpers = {
         });
     },
     prefixer : (string) => {
-        'use strict';
+
+        if(typeof string !== 'string') {
+            throw new Error('Argument must be a string');
+        }
 
         var prefixes = [{
             pre: 'A ',
