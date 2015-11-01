@@ -22,7 +22,7 @@ const helpers = {
             throw new Error('Argument must be array');
         }
 
-        var index = array[Math.floor(array.length * Math.random())];
+        var index = Math.floor(array.length * Math.random());
 
         return array.splice(index, 1)[0];
 
