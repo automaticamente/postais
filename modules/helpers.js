@@ -52,9 +52,9 @@ const helpers = {
             setTimeout(r, time * 1000);
         });
     },
-    prefixer : (string) => {
+    prefixer: (string) => {
 
-        if(typeof string !== 'string') {
+        if (typeof string !== 'string') {
             throw new Error('Argument must be a string');
         }
 
