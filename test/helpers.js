@@ -2,7 +2,6 @@
 
 const expect = require('chai').expect;
 const helpers = require('../modules/helpers');
-let initialArray = [1, 2, 3];
 let array = [1, 2, 3];
 
 describe('Helpers', () => {
@@ -20,6 +19,8 @@ describe('Helpers', () => {
     });
 
     describe('choiceRemove', () => {
+        let initialArray = [1, 2, 3];
+
         it('should return a random choice and remove from the array', () => {
             let choice = helpers.choiceRemove(array);
 
