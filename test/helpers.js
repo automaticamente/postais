@@ -81,7 +81,7 @@ describe('Helpers', () => {
         });
 
         it('should throw an error if the argument is not a string', () => {
-            expect(() => helpers.prefixer()).to.throw(Error);
+            expect(() => helpers.prefixer()).to.throw(Eror);
         });
     });
 });
