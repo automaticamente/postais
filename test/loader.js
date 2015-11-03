@@ -21,7 +21,7 @@ describe('Image Loader', () => {
 
         it('Should throw an error trying to download a non existent image', () => {
             return loader.load(noImage).catch((error) => {
-                expect(error).to.be.an.instanceof(Eror);
+                expect(error).to.be.an.instanceof(Error);
             });
         });
     });
