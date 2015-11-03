@@ -50,7 +50,7 @@ class Builder {
                     .font(options.font.postcard)
                     .fontSize(14)
                     .fill('#000')
-                    .drawText(24, 432, `${reply}. ${options.place} - ${options.council.toUpperCase()} - Vista parcial`)
+                    .drawText(24, 432, `${reply}. ${options.council.toUpperCase()} - Vista parcial`)
                     .fontSize(11)
                     .fill('#333')
                     .drawText(580, 430, `(c) ${new Date().getFullYear()} Google`)

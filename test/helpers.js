@@ -73,7 +73,7 @@ describe('Helpers', () => {
 
     describe('prefixer', () => {
         it('should add article', () => {
-            expect(helpers.prefixer('A Lorem')).to.equal('na Lorem');
+            expect(helpers.prefixer('A Lorem')).to.equal('n Lorem');
         });
 
         it('should not add article', () => {
