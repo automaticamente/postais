@@ -5,3 +5,4 @@ output/*
 !output/.gitkeep
 download/*
 !download/.gitkeep
+activity.log
